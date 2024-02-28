@@ -17,7 +17,7 @@ export function links() {
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Product Roadmap powered by Rowy",
+  title: "Product Roadmap powered by BuildShip",
   viewport: "width=device-width,initial-scale=1",
 });
 

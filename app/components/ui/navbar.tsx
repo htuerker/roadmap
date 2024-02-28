@@ -7,7 +7,7 @@ const Navbar = () => {
       <a href="https://www.rowy.io/?utm_source=roadmap">
         <div className="flex flex-col justify-start select-none rounded-lg px-4 py-1">
           <span className="text-2xl font-bold">Roadmap</span>
-          <span className="text-xs">Powered by Rowy</span>
+          <span className="text-xs">Powered by BuildShip</span>
         </div>
       </a>
       <div className="ml-auto">
