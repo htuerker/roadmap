@@ -26,8 +26,8 @@ const ItemsNavbar = ({
                   }`}
                   onClick={() =>
                     status === "All"
-                    ? submit(null, { action: "/roadmap" })
-                    : submit({ status }, { action: "/roadmap" })
+                      ? submit(null, { action: "/" })
+                      : submit({ status }, { action: "/" })
                   }
                 >
                   <span className="px-2">{status}</span>
@@ -41,8 +41,8 @@ const ItemsNavbar = ({
               className="hidden md:inline-block rounded-lg"
               onClick={() =>
                 status === "All"
-                  ? submit(null, { action: "/roadmap" })
-                  : submit({ status }, { action: "/roadmap" })
+                  ? submit(null, { action: "/" })
+                  : submit({ status }, { action: "/" })
               }
             >
               <span>

@@ -1,18 +1,27 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import {
+  redirect,
+  type ActionFunction,
+  type LoaderFunction,
+} from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
-import { createVote, getItem, getVotes } from "~/api.server";
+import { createVote, getItem } from "~/api.server";
 import ItemVotes from "~/components/roadmap/votes";
 import ItemNavbar from "~/components/roadmap/item-navbar";
 import Container from "~/components/ui/container";
 import { RoadmapItem } from "~/models/RoadmapItem";
 import { Vote } from "~/models/Vote";
+import { notFound } from "remix-utils";
 
 export const loader: LoaderFunction = async ({ params }: any) => {
   const { itemId } = params;
-  const [item, votes] = await Promise.all([getItem(itemId), getVotes(itemId)]);
+  const item = await getItem({ itemId });
+  if (!item) {
+    throw notFound({ item });
+  }
+
   return {
     item: RoadmapItem.toClient(item),
-    votes: votes.map((vote) => Vote.toClient(vote)),
+    votes: item.votes?.map((vote) => Vote.toClient(vote)) || [],
   };
 };
 
@@ -21,7 +30,16 @@ export const action: ActionFunction = async ({ request }: any) => {
   const itemId = formData.get("itemId");
   const vote = formData.get("vote");
   const comment = formData.get("comment");
-  await createVote(request, { itemId, vote, comment });
+  const email = formData.get("email");
+
+  await createVote({
+    itemId,
+    vote: {
+      vote: vote as string,
+      comment,
+      email,
+    },
+  });
   return null;
 };
 

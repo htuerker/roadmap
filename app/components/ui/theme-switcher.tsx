@@ -7,10 +7,12 @@ const ThemeSwitcher = () => {
   useEffect(() => {
     themeChange(false);
   }, []);
-  
-  const localTheme = localStorage.getItem("theme")
-  const isDark = () => localTheme ? localTheme === "dark" : 
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const localTheme = localStorage.getItem("theme");
+  const isDark = () =>
+    localTheme
+      ? localTheme === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
 
   return (
     <div
@@ -19,6 +21,7 @@ const ThemeSwitcher = () => {
     >
       <label className="swap swap-rotate p-0 px-2">
         <input
+          className="hidden"
           type="checkbox"
           data-set-theme={isDark() ? "light" : "dark"}
           onChange={(e) =>

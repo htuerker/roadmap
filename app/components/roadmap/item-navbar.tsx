@@ -7,7 +7,7 @@ const ItemNavbar = ({ item }: { item: RoadmapItem }) => {
     <div className="navbar rounded-lg border-b-2 border-b-base-200 rounded-b-none pb-0">
       <ul className="menu menu-horizontal rounded-box gap-1 w-full items-start">
         <li className="rounded-l-lg">
-          <Link to="/roadmap">
+          <Link to="/">
             <IconArrowLeft />
           </Link>
         </li>
